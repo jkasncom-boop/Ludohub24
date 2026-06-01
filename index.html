@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Khiladi24 Clone - Play & Win Cash</title>
+    <title>LudoHub24 - Play & Win Cash</title>
     <style>
-        /* Base Styling */
         * {
             margin: 0;
             padding: 0;
@@ -16,10 +15,8 @@
         body {
             background-color: #0d0f14;
             color: #ffffff;
-            padding-bottom: 70px; /* Space for sticky bottom bar */
+            padding-bottom: 80px;
         }
-
-        /* Top Header */
         header {
             background: #161a24;
             padding: 12px 20px;
@@ -48,33 +45,27 @@
             border-radius: 20px;
             cursor: pointer;
         }
-
-        /* Main Hero Section */
         .hero-banner {
             background: linear-gradient(180deg, #161a24 0%, #0d0f14 100%);
-            padding: 40px 20px;
+            padding: 30px 20px;
             text-align: center;
-            border-bottom: 1px solid #1f2633;
         }
         .hero-banner h1 {
             font-size: 28px;
-            color: #ffffff;
             margin-bottom: 8px;
             font-weight: 800;
         }
         .hero-banner p {
             font-size: 14px;
             color: #8fa0bc;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
-        
-        /* Flashing Download Button */
         .download-btn-main {
             background: linear-gradient(90deg, #ff0055, #ffcc00);
             color: #ffffff;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: bold;
-            padding: 15px 35px;
+            padding: 12px 30px;
             border: none;
             border-radius: 30px;
             cursor: pointer;
@@ -88,13 +79,11 @@
             50% { transform: scale(1.03); box-shadow: 0 0 25px rgba(255, 204, 0, 0.7); }
             100% { transform: scale(1); }
         }
-
-        /* Trust Badges Grid */
         .trust-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 10px;
-            padding: 20px;
+            padding: 15px;
             background: #11141c;
         }
         .trust-item {
@@ -104,217 +93,266 @@
             text-align: center;
             border-radius: 8px;
         }
-        .trust-item h3 {
-            font-size: 16px;
-            color: #00ffcc;
-            margin-bottom: 4px;
-        }
-        .trust-item p {
-            font-size: 11px;
-            color: #8fa0bc;
-        }
+        .trust-item h3 { color: #00ffcc; font-size: 16px; margin-bottom: 4px; }
+        .trust-item p { font-size: 11px; color: #8fa0bc; }
 
-        /* Game Lobby Section */
-        .lobby-container {
-            padding: 25px 15px;
-        }
-        .section-title {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: #ffcc00;
-            border-left: 4px solid #ff0055;
-            padding-left: 10px;
-        }
-        .games-list {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        .game-row-card {
-            background: #161a24;
-            border: 1px solid #232a38;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 15px;
-        }
-        .game-info {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        .game-icon-placeholder {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #232a38, #0d0f14);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            border: 1px solid #ff0055;
-        }
-        .game-details h4 {
-            font-size: 16px;
-            margin-bottom: 4px;
-            color: #ffffff;
-        }
-        .game-details p {
-            font-size: 12px;
-            color: #8fa0bc;
-        }
-        .btn-challenge {
-            background: #ff0055;
-            color: #fff;
-            border: none;
-            padding: 8px 16px;
-            font-weight: bold;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 13px;
-        }
+        .lobby-container { padding: 20px 15px; }
+        .section-title { font-size: 18px; font-weight: 700; margin-bottom: 15px; color: #ffcc00; border-left: 4px solid #ff0055; padding-left: 10px; }
+        .games-list { display: flex; flex-direction: column; gap: 15px; }
+        .game-row-card { background: #161a24; border: 1px solid #232a38; border-radius: 12px; display: flex; align-items: center; justify-content: space-between; padding: 15px; }
+        .game-info { display: flex; align-items: center; gap: 15px; }
+        .game-icon-placeholder { width: 50px; height: 50px; background: linear-gradient(135deg, #232a38, #0d0f14); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 24px; border: 1px solid #ff0055; }
+        .game-details h4 { font-size: 16px; margin-bottom: 4px; color: #ffffff; }
+        .game-details p { font-size: 12px; color: #8fa0bc; }
+        .btn-challenge { background: #ff0055; color: #fff; border: none; padding: 8px 16px; font-weight: bold; border-radius: 6px; cursor: pointer; }
 
-        /* App-Style Bottom Sticky Navigation Bar */
-        .bottom-nav {
+        .disclaimer-bar { padding: 20px; background: #090a0e; text-align: center; font-size: 11px; color: #55657e; line-height: 1.6; }
+        
+        /* BOTTOM NAVIGATION BAR */
+        .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background: #161a24; border-top: 1px solid #232a38; display: flex; justify-content: space-around; padding: 10px 0; z-index: 100; }
+        .nav-item { text-align: center; color: #8fa0bc; font-size: 11px; text-decoration: none; cursor: pointer; }
+        .nav-item.active { color: #00ffcc; }
+        .nav-icon { font-size: 20px; margin-bottom: 2px; display: block; }
+
+        /* MODAL OVERLAYS */
+        .modal-overlay {
             position: fixed;
-            bottom: 0;
+            top: 0;
             left: 0;
             width: 100%;
-            background: #161a24;
-            border-top: 1px solid #232a38;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
             display: flex;
-            justify-content: space-around;
-            padding: 10px 0;
-            z-index: 100;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
         }
-        .nav-item {
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .modal-box {
+            background: #161a24;
+            border: 2px solid #ff0055;
+            padding: 25px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 360px;
             text-align: center;
-            color: #8fa0bc;
-            font-size: 11px;
-            text-decoration: none;
-            cursor: pointer;
+            position: relative;
+            box-shadow: 0 0 30px rgba(255, 0, 85, 0.3);
         }
-        .nav-item.active {
-            color: #00ffcc;
+        .modal-box.bet-theme { border-color: #00ffcc; box-shadow: 0 0 30px rgba(0, 255, 204, 0.2); }
+        .modal-box.refer-theme { border-color: #ffcc00; box-shadow: 0 0 30px rgba(255, 204, 0, 0.2); }
+        
+        .close-btn { position: absolute; top: 10px; right: 15px; font-size: 22px; color: #8fa0bc; cursor: pointer; }
+        .modal-box h2 { margin-bottom: 15px; color: #ffcc00; font-size: 22px; }
+        
+        .input-group { margin-bottom: 15px; text-align: left; }
+        .input-group label { display: block; font-size: 12px; color: #8fa0bc; margin-bottom: 5px; }
+        .input-group input { width: 100%; padding: 12px; background: #0d0f14; border: 1px solid #232a38; border-radius: 8px; color: #fff; font-size: 16px; outline: none; }
+        .input-group input:focus { border-color: #00ffcc; }
+        
+        /* Calculation Display Box */
+        .calc-box {
+            background: #0d0f14;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+            text-align: left;
+            font-size: 13px;
+            border: 1px dashed #333;
         }
-        .nav-icon {
-            font-size: 20px;
-            margin-bottom: 2px;
-            display: block;
-        }
+        .calc-line { display: flex; justify-content: space-between; margin-bottom: 5px; color: #8fa0bc; }
+        .calc-line.total { border-top: 1px solid #232a38; padding-top: 5px; margin-top: 5px; color: #00ffcc; font-weight: bold; }
+        
+        .bet-limits-text { font-size: 11px; color: #ff0055; margin-top: 5px; font-weight: bold; }
+        
+        .btn-submit { background: linear-gradient(135deg, #ff0055, #ffcc00); color: white; border: none; width: 100%; padding: 12px; font-size: 16px; font-weight: bold; border-radius: 8px; cursor: pointer; margin-top: 10px; }
+        .btn-submit.bet-btn { background: linear-gradient(135deg, #00ffcc, #0099ff); color: #0d0f14; }
 
-        /* Notice Footer */
-        .disclaimer-bar {
-            padding: 20px;
-            background: #090a0e;
-            text-align: center;
-            font-size: 11px;
-            color: #55657e;
-            line-height: 1.6;
-        }
+        /* Refer Style */
+        .refer-code-box { background: #0d0f14; border: 2px dashed #ffcc00; padding: 10px; font-size: 20px; font-weight: bold; letter-spacing: 2px; color: #fff; margin: 15px 0; border-radius: 6px; }
+        .refer-details { font-size: 13px; color: #8fa0bc; line-height: 1.5; text-align: left; background: #11141c; padding: 10px; border-radius: 6px; }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
     <header>
-        <div class="brand-logo">KHILADI 24</div>
-        <button class="btn-auth">LOGIN</button>
+        <div class="brand-logo">LUDOHUB 24</div>
+        <button class="btn-auth" id="loginBtn">LOGIN</button>
     </header>
 
-    <!-- Hero Banner -->
     <div class="hero-banner">
         <h1>Ludo & Skill Games</h1>
         <p>Play with real players & withdraw instantly</p>
         <button class="download-btn-main">📥 Download App Now</button>
     </div>
 
-    <!-- Live Statistics / Trust Section -->
     <div class="trust-grid">
-        <div class="trust-item">
-            <h3>5M+</h3>
-            <p>Live Users</p>
-        </div>
-        <div class="trust-item">
-            <h3>Instant</h3>
-            <p>Withdrawal</p>
-        </div>
-        <div class="trust-item">
-            <h3>100%</h3>
-            <p>Safe & Legal</p>
-        </div>
+        <div class="trust-item"><h3>5M+</h3><p>Live Users</p></div>
+        <div class="trust-item"><h3>Instant</h3><p>Withdrawal</p></div>
+        <div class="trust-item"><h3>100%</h3><p>Safe & Legal</p></div>
     </div>
 
-    <!-- Game Selection Area -->
     <div class="lobby-container">
         <div class="section-title">Available Game Lobbies</div>
         <div class="games-list">
-            
-            <!-- Game 1 -->
             <div class="game-row-card">
                 <div class="game-info">
                     <div class="game-icon-placeholder">🎲</div>
                     <div class="game-details">
                         <h4>Ludo Classic</h4>
-                        <p>Win real cash instantly</p>
+                        <p>5% Platform Commission Policy</p>
                     </div>
                 </div>
-                <button class="btn-challenge">PLAY</button>
+                <button class="btn-challenge play-game-btn">PLAY</button>
             </div>
-
-            <!-- Game 2 -->
             <div class="game-row-card">
                 <div class="game-info">
                     <div class="game-icon-placeholder">⚡</div>
                     <div class="game-details">
-                        <h4>Ludo Popular (Quick)</h4>
-                        <p>Fast 4-token matching</p>
+                        <h4>Ludo Quick Match</h4>
+                        <p>100% Secure Fair-Play</p>
                     </div>
                 </div>
-                <button class="btn-challenge">PLAY</button>
+                <button class="btn-challenge play-game-btn">PLAY</button>
             </div>
-
-            <!-- Game 3 -->
-            <div class="game-row-card">
-                <div class="game-info">
-                    <div class="game-icon-placeholder">🎯</div>
-                    <div class="game-details">
-                        <h4>Skill Challenges</h4>
-                        <p>1 vs 1 Battle Rooms</p>
-                    </div>
-                </div>
-                <button class="btn-challenge">PLAY</button>
-            </div>
-
         </div>
     </div>
 
-    <!-- Responsible Gaming Warning -->
     <div class="disclaimer-bar">
-        <p>⚠️ <strong>Financial Risk Notice:</strong> This platform involves skill-based matches that contain elements of financial risk. Please engage responsibly. Only for users above 18 years of age.</p>
+        <p>⚠️ <strong>Financial Risk Notice:</strong> This platform involves skill-based matches. Please engage responsibly.</p>
     </div>
 
-    <!-- Sticky Bottom App Navigation Bar -->
-    <div class="bottom-nav">
-        <div class="nav-item active">
-            <span class="nav-icon">🏠</span>
-            Home
-        </div>
-        <div class="nav-item">
-            <span class="nav-icon">🏆</span>
-            Contests
-        </div>
-        <div class="nav-item">
-            <span class="nav-icon">💼</span>
-            Wallet
-        </div>
-        <div class="nav-item">
-            <span class="nav-icon">👤</span>
-            Profile
+    <div class="modal-overlay" id="loginOverlay">
+        <div class="modal-box">
+            <span class="close-btn" id="closeBtn">&times;</span>
+            <h2>Sign In / Register</h2>
+            <form id="loginForm">
+                <div class="input-group">
+                    <label>Mobile Number</label>
+                    <input type="tel" placeholder="Enter 10 digit number" required maxlength="10">
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" placeholder="Enter Password" required>
+                </div>
+                <button type="submit" class="btn-submit">PROCEED</button>
+            </form>
         </div>
     </div>
+
+    <div class="modal-overlay" id="betOverlay">
+        <div class="modal-box bet-theme">
+            <span class="close-btn" id="closeBetBtn">&times;</span>
+            <h2 style="color: #00ffcc;">Set Battle Amount</h2>
+            <form id="betForm">
+                <div class="input-group">
+                    <label>Enter Betting Amount (₹)</label>
+                    <input type="number" id="betAmountInput" placeholder="Min ₹50 - Max ₹25,000" required>
+                    <p class="bet-limits-text">Limit: ₹50 to ₹25,000</p>
+                </div>
+                
+                <div class="calc-box">
+                    <div class="calc-line"><span>Total Match Pool (2x):</span><span id="poolText">₹0</span></div>
+                    <div class="calc-line"><span>Admin Commission (5%):</span><span id="commText" style="color: #ff0055;">-₹0</span></div>
+                    <div class="calc-line total"><span>Winner Prize Cash:</span><span id="prizeText">₹0</span></div>
+                </div>
+
+                <button type="submit" class="btn-submit bet-btn">START CHALLENGE</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="referOverlay">
+        <div class="modal-box refer-theme">
+            <span class="close-btn" id="closeReferBtn">&times;</span>
+            <h2 style="color: #ffcc00;">Refer & Earn Program 💸</h2>
+            <p style="font-size: 13px; color: #8fa0bc; margin-bottom: 10px;">Apne dosto ko refer karein aur unke har match khelne par kamayein!</p>
+            <div class="refer-code-box">LUDO786</div>
+            <div class="refer-details">
+                <p>💰 <strong>1% Referral Commission:</strong> Jab aapka dost koi bhi battle lagayega, us amount ka sidhe **1% cash commission** aapko milega.</p>
+                <p style="margin-top: 5px;">🔗 No Limit: Jitne zyada dosto ko join karwaoge, utni lifetime bina khele kamai hogi!</p>
+            </div>
+            <button class="btn-submit" style="background: #ffcc00; color: #0d0f14;" onclick="alert('Referral Link Copied!')">SHARE LINK</button>
+        </div>
+    </div>
+
+    <div class="bottom-nav">
+        <div class="nav-item active" id="navHome"><span class="nav-icon">🏠</span>Home</div>
+        <div class="nav-item" id="navRefer"><span class="nav-icon">📢</span>Refer & Earn</div>
+        <div class="nav-item" onclick="alert('Wallet system loading...')"><span class="nav-icon">💼</span>Wallet</div>
+    </div>
+
+    <script>
+        // Modals Elements
+        const loginBtn = document.getElementById('loginBtn');
+        const loginOverlay = document.getElementById('loginOverlay');
+        const closeBtn = document.getElementById('closeBtn');
+        const loginForm = document.getElementById('loginForm');
+
+        const betOverlay = document.getElementById('betOverlay');
+        const closeBetBtn = document.getElementById('closeBetBtn');
+        const betForm = document.getElementById('betForm');
+        const betAmountInput = document.getElementById('betAmountInput');
+        const playButtons = document.querySelectorAll('.play-game-btn');
+
+        const referOverlay = document.getElementById('referOverlay');
+        const closeReferBtn = document.getElementById('closeReferBtn');
+        const navRefer = document.getElementById('navRefer');
+
+        // Live calculation elements
+        const poolText = document.getElementById('poolText');
+        const commText = document.getElementById('commText');
+        const prizeText = document.getElementById('prizeText');
+
+        // Login Actions
+        loginBtn.addEventListener('click', () => { loginOverlay.classList.add('active'); });
+        closeBtn.addEventListener('click', () => { loginOverlay.classList.remove('active'); });
+        loginForm.addEventListener('submit', (e) => { e.preventDefault(); alert('Login Successful!'); loginOverlay.classList.remove('active'); });
+
+        // Open Betting Popup
+        playButtons.forEach(button => { button.addEventListener('click', () => { betOverlay.classList.add('active'); }); });
+        closeBetBtn.addEventListener('click', () => { betOverlay.classList.remove('active'); });
+
+        // Open Refer Popup
+        navRefer.addEventListener('click', () => { referOverlay.classList.add('active'); });
+        closeReferBtn.addEventListener('click', () => { referOverlay.classList.remove('active'); });
+
+        // 🆕 5% Commission Live Counter Logic
+        betAmountInput.addEventListener('input', () => {
+            const val = parseInt(betAmountInput.value);
+            if (!val || val < 0) {
+                poolText.innerText = "₹0";
+                commText.innerText = "-₹0";
+                prizeText.innerText = "₹0";
+                return;
+            }
+            const totalPool = val * 2;
+            const commission = totalPool * 0.05; // 5% Admin Comm
+            const finalPrize = totalPool - commission;
+
+            poolText.innerText = "₹" + totalPool;
+            commText.innerText = "-₹" + commission.toFixed(0);
+            prizeText.innerText = "₹" + finalPrize.toFixed(0);
+        });
+
+        // Betting Limits Submit Validation
+        betForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const amount = parseInt(betAmountInput.value);
+            if (amount < 50) { alert('⚠️ Minimum betting amount ₹50 hai!'); }
+            else if (amount > 25000) { alert('⚠️ Maximum betting amount ₹25,000 allowed hai!'); }
+            else {
+                alert('🎉 Battle Room Ready! 5% admin split applies.');
+                betOverlay.classList.remove('active');
+            }
+        });
+    </script>
 
 </body>
 </html>
