@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khiladi24 Clone - Play & Win Cash</title>
+    <style>
+        /* Base Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        body {
+            background-color: #0d0f14;
+            color: #ffffff;
+            padding-bottom: 70px; /* Space for sticky bottom bar */
+        }
+
+        /* Top Header */
+        header {
+            background: #161a24;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #232a38;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .brand-logo {
+            font-size: 22px;
+            font-weight: 900;
+            color: #ffcc00;
+            text-shadow: 0 0 10px rgba(255, 204, 0, 0.4);
+            letter-spacing: 1px;
+        }
+        .btn-auth {
+            background: linear-gradient(135deg, #00ffcc, #0099ff);
+            color: #0d0f14;
+            border: none;
+            padding: 8px 18px;
+            font-weight: bold;
+            font-size: 14px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        /* Main Hero Section */
+        .hero-banner {
+            background: linear-gradient(180deg, #161a24 0%, #0d0f14 100%);
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 1px solid #1f2633;
+        }
+        .hero-banner h1 {
+            font-size: 28px;
+            color: #ffffff;
+            margin-bottom: 8px;
+            font-weight: 800;
+        }
+        .hero-banner p {
+            font-size: 14px;
+            color: #8fa0bc;
+            margin-bottom: 25px;
+        }
+        
+        /* Flashing Download Button */
+        .download-btn-main {
+            background: linear-gradient(90deg, #ff0055, #ffcc00);
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 15px 35px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            width: 100%;
+            max-width: 320px;
+            box-shadow: 0 0 20px rgba(255, 0, 85, 0.5);
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); box-shadow: 0 0 25px rgba(255, 204, 0, 0.7); }
+            100% { transform: scale(1); }
+        }
+
+        /* Trust Badges Grid */
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            padding: 20px;
+            background: #11141c;
+        }
+        .trust-item {
+            background: #161a24;
+            border: 1px solid #232a38;
+            padding: 12px 5px;
+            text-align: center;
+            border-radius: 8px;
+        }
+        .trust-item h3 {
+            font-size: 16px;
+            color: #00ffcc;
+            margin-bottom: 4px;
+        }
+        .trust-item p {
+            font-size: 11px;
+            color: #8fa0bc;
+        }
+
+        /* Game Lobby Section */
+        .lobby-container {
+            padding: 25px 15px;
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #ffcc00;
+            border-left: 4px solid #ff0055;
+            padding-left: 10px;
+        }
+        .games-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .game-row-card {
+            background: #161a24;
+            border: 1px solid #232a38;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+        }
+        .game-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .game-icon-placeholder {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #232a38, #0d0f14);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            border: 1px solid #ff0055;
+        }
+        .game-details h4 {
+            font-size: 16px;
+            margin-bottom: 4px;
+            color: #ffffff;
+        }
+        .game-details p {
+            font-size: 12px;
+            color: #8fa0bc;
+        }
+        .btn-challenge {
+            background: #ff0055;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        /* App-Style Bottom Sticky Navigation Bar */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: #161a24;
+            border-top: 1px solid #232a38;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            z-index: 100;
+        }
+        .nav-item {
+            text-align: center;
+            color: #8fa0bc;
+            font-size: 11px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .nav-item.active {
+            color: #00ffcc;
+        }
+        .nav-icon {
+            font-size: 20px;
+            margin-bottom: 2px;
+            display: block;
+        }
+
+        /* Notice Footer */
+        .disclaimer-bar {
+            padding: 20px;
+            background: #090a0e;
+            text-align: center;
+            font-size: 11px;
+            color: #55657e;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="brand-logo">KHILADI 24</div>
+        <button class="btn-auth">LOGIN</button>
+    </header>
+
+    <!-- Hero Banner -->
+    <div class="hero-banner">
+        <h1>Ludo & Skill Games</h1>
+        <p>Play with real players & withdraw instantly</p>
+        <button class="download-btn-main">📥 Download App Now</button>
+    </div>
+
+    <!-- Live Statistics / Trust Section -->
+    <div class="trust-grid">
+        <div class="trust-item">
+            <h3>5M+</h3>
+            <p>Live Users</p>
+        </div>
+        <div class="trust-item">
+            <h3>Instant</h3>
+            <p>Withdrawal</p>
+        </div>
+        <div class="trust-item">
+            <h3>100%</h3>
+            <p>Safe & Legal</p>
+        </div>
+    </div>
+
+    <!-- Game Selection Area -->
+    <div class="lobby-container">
+        <div class="section-title">Available Game Lobbies</div>
+        <div class="games-list">
+            
+            <!-- Game 1 -->
+            <div class="game-row-card">
+                <div class="game-info">
+                    <div class="game-icon-placeholder">🎲</div>
+                    <div class="game-details">
+                        <h4>Ludo Classic</h4>
+                        <p>Win real cash instantly</p>
+                    </div>
+                </div>
+                <button class="btn-challenge">PLAY</button>
+            </div>
+
+            <!-- Game 2 -->
+            <div class="game-row-card">
+                <div class="game-info">
+                    <div class="game-icon-placeholder">⚡</div>
+                    <div class="game-details">
+                        <h4>Ludo Popular (Quick)</h4>
+                        <p>Fast 4-token matching</p>
+                    </div>
+                </div>
+                <button class="btn-challenge">PLAY</button>
+            </div>
+
+            <!-- Game 3 -->
+            <div class="game-row-card">
+                <div class="game-info">
+                    <div class="game-icon-placeholder">🎯</div>
+                    <div class="game-details">
+                        <h4>Skill Challenges</h4>
+                        <p>1 vs 1 Battle Rooms</p>
+                    </div>
+                </div>
+                <button class="btn-challenge">PLAY</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Responsible Gaming Warning -->
+    <div class="disclaimer-bar">
+        <p>⚠️ <strong>Financial Risk Notice:</strong> This platform involves skill-based matches that contain elements of financial risk. Please engage responsibly. Only for users above 18 years of age.</p>
+    </div>
+
+    <!-- Sticky Bottom App Navigation Bar -->
+    <div class="bottom-nav">
+        <div class="nav-item active">
+            <span class="nav-icon">🏠</span>
+            Home
+        </div>
+        <div class="nav-item">
+            <span class="nav-icon">🏆</span>
+            Contests
+        </div>
+        <div class="nav-item">
+            <span class="nav-icon">💼</span>
+            Wallet
+        </div>
+        <div class="nav-item">
+            <span class="nav-icon">👤</span>
+            Profile
+        </div>
+    </div>
+
+</body>
+</html>
